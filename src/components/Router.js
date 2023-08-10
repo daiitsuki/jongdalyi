@@ -2,11 +2,14 @@ import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "../routes/Home";
 import Auth from "../routes/Auth";
 import Profile from "../routes/Profile";
+import Navigation from "./Navigation";
+import Chat from "../routes/Chat";
 
 const AppRouter = ({ isLoggedIn, userInfo, refreshUserData }) => {
   return (
-    <div>
+    <div className="container">
       <Router>
+        {isLoggedIn && <Navigation />}
         <Routes>
           {isLoggedIn ? (
             <>
@@ -20,6 +23,7 @@ const AppRouter = ({ isLoggedIn, userInfo, refreshUserData }) => {
                   />
                 }
               />
+              <Route path="/chat" element={<Chat />} />
             </>
           ) : (
             <Route path="/" element={<Auth />} />

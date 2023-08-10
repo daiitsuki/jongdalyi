@@ -24,10 +24,10 @@ const Profile = ({ userInfo, refreshUserData }) => {
   return (
     <>
       <h1>{userInfo.displayName}님 환영합니다!</h1>
-      <button onClick={onLogOutClick}>로그아웃</button>
+
       <div>
-        <h4>프로필 네임 변경</h4>
         <form onSubmit={onSubmit}>
+          <h4>프로필 네임 변경</h4>
           <input
             type="text"
             value={value}
@@ -39,6 +39,7 @@ const Profile = ({ userInfo, refreshUserData }) => {
           <input type="submit" value="변경" />
         </form>
       </div>
+      <button onClick={onLogOutClick}>로그아웃</button>
     </>
   );
 };

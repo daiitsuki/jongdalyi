@@ -28,12 +28,12 @@ const Auth = () => {
 
   return (
     <div>
-      <h1>달이 - 둘만의 비밀이야기</h1>
+      <h1>달이 - 너랑 나랑 비밀 이야기</h1>
       <form onSubmit={onSubmit}>
         <h4>
           {auth
             ? "인증되었습니다. 아래의 로그인 버튼을 통해 로그인하세요."
-            : "비밀번호를 입력하세요."}
+            : "계속하려면 비밀번호를 입력하세요."}
         </h4>
         <input
           onChange={onChange}
