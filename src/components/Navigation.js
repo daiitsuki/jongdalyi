@@ -13,6 +13,9 @@ const Navigation = () => {
         <li>
           <Link to="/chat">chat</Link>
         </li>
+        <li>
+          <Link to="/calendar">calendar</Link>
+        </li>
       </ul>
     </nav>
   );

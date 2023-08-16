@@ -4,6 +4,7 @@ import Auth from "../routes/Auth";
 import Profile from "../routes/Profile";
 import Navigation from "./Navigation";
 import Chat from "../routes/Chat";
+import CalendarPage from "../routes/Calendar";
 
 const AppRouter = ({ isLoggedIn, userInfo, refreshUserData }) => {
   return (
@@ -24,6 +25,7 @@ const AppRouter = ({ isLoggedIn, userInfo, refreshUserData }) => {
                 }
               />
               <Route path="/chat" element={<Chat />} />
+              <Route path="/calendar" element={<CalendarPage />} />
             </>
           ) : (
             <Route path="/" element={<Auth />} />
