@@ -6,8 +6,12 @@ import "./Calendar.css";
 
 const CalendarPage = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [mark, setMark] = useState(["2023-08-11", "2023-08-12"]);
   const customWeekdayNames = ["일", "월", "화", "수", "목", "금", "토"];
   const standard = new Date(2023, 5, 4, 0, 0, 0, -1);
+  const dDay = Math.ceil(
+    Math.abs(standard - selectedDate) / (1000 * 60 * 60 * 24)
+  );
   const onChange = (value) => {
     setSelectedDate(value);
   };
@@ -31,14 +35,20 @@ const CalendarPage = () => {
         next2Label={null}
         prev2Label={null}
         showNeighboringMonth={false}
+        tileContent={({ date, view }) => {
+          if (mark.find((x) => x === moment(date).format("YYYY-MM-DD"))) {
+            return (
+              <>
+                <div className="dot">1</div>
+              </>
+            );
+          }
+        }}
       />
       <br />
       <button onClick={onClick}>오늘 날짜로 이동하기</button>
       <p>{String(selectedDate)}</p>
-      <span>
-        D +{" "}
-        {Math.ceil(Math.abs(standard - selectedDate) / (1000 * 60 * 60 * 24))}
-      </span>
+      <span>D + {dDay}</span>
     </>
   );
 };
