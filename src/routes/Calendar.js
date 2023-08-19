@@ -2,15 +2,16 @@ import moment from "moment/moment";
 import { useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import "./Calendar.css";
 
 const CalendarPage = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const customWeekdayNames = ["일", "월", "화", "수", "목", "금", "토"];
-  const onChange = (value, event) => {
+  const standard = new Date(2023, 5, 4, 0, 0, 0, -1);
+  const onChange = (value) => {
     setSelectedDate(value);
   };
   const onClick = () => setSelectedDate(new Date());
-  console.log(selectedDate);
   return (
     <>
       <h1>Calendar</h1>
@@ -31,8 +32,13 @@ const CalendarPage = () => {
         prev2Label={null}
         showNeighboringMonth={false}
       />
-      <p>{String(selectedDate)}</p>
+      <br />
       <button onClick={onClick}>오늘 날짜로 이동하기</button>
+      <p>{String(selectedDate)}</p>
+      <span>
+        D +{" "}
+        {Math.ceil(Math.abs(standard - selectedDate) / (1000 * 60 * 60 * 24))}
+      </span>
     </>
   );
 };
