@@ -28,7 +28,7 @@ const Auth = () => {
 
   return (
     <div>
-      <h1>달이 - 둘만의 비밀 이야기</h1>
+      <h1>달이</h1>
       <form onSubmit={onSubmit}>
         <h4>
           {auth
