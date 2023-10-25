@@ -16,6 +16,9 @@ const Navigation = () => {
         <li>
           <Link to="/calendar">calendar</Link>
         </li>
+        <li>
+          <Link to="/photo">photo</Link>
+        </li>
       </ul>
     </nav>
   );

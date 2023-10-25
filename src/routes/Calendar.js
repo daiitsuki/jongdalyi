@@ -1,14 +1,23 @@
 import moment from "moment/moment";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "./Calendar.css";
-import ImgUpload from "../components/ImgUpload";
-import DateInfo from "../components/DateInfo";
+import ImgUpload from "./../components/calendar/ImgUpload";
+import DateInfo from "./../components/calendar/DateInfo";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  onSnapshot,
+  query,
+} from "firebase/firestore";
+import { dbService } from "../fbase";
 
 const CalendarPage = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [mark, setMark] = useState(["2023-10-11", "2023-10-12"]);
+  const [mark, setMark] = useState([]);
   const customWeekdayNames = ["일", "월", "화", "수", "목", "금", "토"];
   const standard = new Date(2023, 5, 4, 0, 0, 0, -1);
   const dDay = Math.ceil(
@@ -18,6 +27,16 @@ const CalendarPage = () => {
     setSelectedDate(value);
   };
   const onClick = () => setSelectedDate(new Date());
+
+  const ff = async () => {
+    const snap = await getDocs(collection(dbService, "calendar"));
+    const arr = snap.docs.map((doc) => doc.id);
+    setMark(arr);
+  };
+
+  useEffect(() => {
+    ff();
+  }, [mark]);
 
   return (
     <>
@@ -49,7 +68,9 @@ const CalendarPage = () => {
               if (mark.find((x) => x === moment(date).format("YYYY-MM-DD"))) {
                 return (
                   <>
-                    <div className="dot">1</div>
+                    <div className="dot" style={{ color: "black" }}>
+                      ●
+                    </div>
                   </>
                 );
               }

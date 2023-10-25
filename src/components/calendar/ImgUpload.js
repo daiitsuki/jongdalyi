@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { dbService } from "../fbase";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { dbService } from "../../fbase";
+import { addDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
 import moment from "moment";
 
 const ImgUpload = ({ selectedDate }) => {
@@ -58,14 +58,25 @@ const ImgUpload = ({ selectedDate }) => {
       url,
       createdAt: Date.now(),
     });
+    await setDoc(doc(dbService, "calendar", date), {
+      date,
+    });
   };
 
   return (
     <>
-      {!uploading && (
+      {uploading ? (
+        <span>이미지 업로드 중입니다.</span>
+      ) : (
         <form onSubmit={onSubmit}>
           <input onChange={onChange} type="file" accept="image/*" required />
-          {imgURL && <img alt="preview" src={imgURL} />}
+          {imgURL && (
+            <img
+              alt="preview"
+              src={imgURL}
+              style={{ maxWidth: "100px", maxHeight: "100px" }}
+            />
+          )}
           <input type="submit" />
         </form>
       )}
