@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/nyam/static/css/main.e11bcc0c.css",
-    "main.js": "/nyam/static/js/main.43c5d899.js",
+    "main.js": "/nyam/static/js/main.f9c037c6.js",
     "index.html": "/nyam/index.html",
     "main.e11bcc0c.css.map": "/nyam/static/css/main.e11bcc0c.css.map",
-    "main.43c5d899.js.map": "/nyam/static/js/main.43c5d899.js.map"
+    "main.f9c037c6.js.map": "/nyam/static/js/main.f9c037c6.js.map"
   },
   "entrypoints": [
     "static/css/main.e11bcc0c.css",
-    "static/js/main.43c5d899.js"
+    "static/js/main.f9c037c6.js"
   ]
 }
