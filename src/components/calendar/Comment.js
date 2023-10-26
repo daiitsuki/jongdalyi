@@ -1,11 +1,27 @@
-import { useEffect } from "react";
+import { addDoc, collection, doc, setDoc, updateDoc } from "firebase/firestore";
+import { useState } from "react";
+import { dbService } from "../../fbase";
 
-const Comment = () => {
-  const onSubmit = (event) => {
+const Comment = ({ id, date, userInfo }) => {
+  const [comment, setComment] = useState("");
+  const uid = userInfo.uid;
+  const onSubmit = async (event) => {
     event.preventDefault();
+    await setDoc(
+      doc(collection(dbService, "calendar", date, "IMG", id, "comment")),
+      {
+        uid,
+        comment,
+        createdAt: Date.now(),
+      }
+    );
+    setComment("");
   };
 
-  useEffect(() => {}, []);
+  const onChange = (event) => {
+    setComment(event.target.value);
+  };
+
   return (
     <>
       <div
@@ -14,7 +30,7 @@ const Comment = () => {
         댓글창
       </div>
       <form onSubmit={onSubmit}>
-        <input type="text" />
+        <input type="text" onChange={onChange} value={comment} />
         <input type="submit" />
       </form>
     </>

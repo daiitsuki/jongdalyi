@@ -15,7 +15,7 @@ import {
 } from "firebase/firestore";
 import { dbService } from "../fbase";
 
-const CalendarPage = () => {
+const CalendarPage = ({ userInfo }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [mark, setMark] = useState([]);
   const customWeekdayNames = ["일", "월", "화", "수", "목", "금", "토"];
@@ -79,7 +79,7 @@ const CalendarPage = () => {
           <ImgUpload selectedDate={selectedDate} />
         </div>
         <div>
-          <DateInfo selectedDate={selectedDate} />
+          <DateInfo selectedDate={selectedDate} userInfo={userInfo} />
         </div>
       </div>
     </>

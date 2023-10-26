@@ -25,7 +25,10 @@ const AppRouter = ({ isLoggedIn, userInfo, refreshUserData }) => {
                 }
               />
               <Route path="/chat" element={<Chat />} />
-              <Route path="/calendar" element={<CalendarPage />} />
+              <Route
+                path="/calendar"
+                element={<CalendarPage userInfo={userInfo} />}
+              />
             </>
           ) : (
             <Route path="/" element={<Auth />} />

@@ -12,9 +12,10 @@ import { dbService } from "../../fbase";
 import { Link } from "react-router-dom";
 import Comment from "./Comment";
 
-const DateInfo = ({ selectedDate }) => {
+const DateInfo = ({ selectedDate, userInfo }) => {
   const [imgs, setImgs] = useState([]);
   const [displayIMG, setDisplayIMG] = useState(0);
+  const [presentID, setPresentID] = useState();
   const date = moment(selectedDate).format("YYYY-MM-DD");
 
   useEffect(() => {
@@ -64,6 +65,12 @@ const DateInfo = ({ selectedDate }) => {
     setDisplayIMG(0);
   }, [selectedDate, imgs]);
 
+  useEffect(() => {
+    if (imgs[displayIMG]) {
+      setPresentID(imgs[displayIMG].id);
+    }
+  }, [imgs, displayIMG, selectedDate]);
+
   return (
     <>
       <div>dateInfo</div>
@@ -111,7 +118,7 @@ const DateInfo = ({ selectedDate }) => {
           <button onClick={imgDelete}>Delete</button>
         </>
       )}
-      <Comment />
+      <Comment id={presentID} date={date} userInfo={userInfo} />
 
       {/* <div>
         imgur에 업로드되어 있는 url→날짜별로 정리해서 다운로드 or 일괄 or
